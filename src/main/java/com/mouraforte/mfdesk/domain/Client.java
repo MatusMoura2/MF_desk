@@ -3,18 +3,28 @@ package com.mouraforte.mfdesk.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.validator.constraints.br.CPF;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
+
+import com.mouraforte.mfdesk.domain.enums.Profiles;
+
+@Entity
 public class Client extends Person{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@OneToMany(mappedBy = "client")
 	private List<Called> calleds = new ArrayList<>();
 
 	public Client() {
 		super();
+		addProfiles(Profiles.CLIENT);
 	}
 
-	public Client(Integer id, @CPF String cpf, String email, String password) {
+	public Client(Integer id, String cpf, String email, String password) {
 		super(id, cpf, email, password);
+		addProfiles(Profiles.CLIENT);
 	}
 
 	public List<Called> getCalleds() {

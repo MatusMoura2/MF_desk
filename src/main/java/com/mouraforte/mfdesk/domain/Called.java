@@ -1,20 +1,43 @@
 package com.mouraforte.mfdesk.domain;
 
-import java.io.ObjectInputFilter.Status;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-import com.mouraforte.mfdesk.domain.enums.Priority;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-public class Called {
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mouraforte.mfdesk.domain.enums.Priority;
+import com.mouraforte.mfdesk.domain.enums.Status;
+
+@Entity
+public class Called implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate openData = LocalDate.now();
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate closedData = LocalDate.now();
+	
 	private Priority priority;
 	private Status status;
 	private String title;
 	private String observations;
+	
+	@ManyToOne
+	@JoinColumn(name = "tecnico_id")
 	private Technician technician;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Client client;
 	
 	public Called(Integer id, Priority priority, Status status, String title, String observations,
