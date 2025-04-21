@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.mouraforte.mfdesk.domain.enums.Profiles;
 
@@ -22,8 +23,8 @@ public class Client extends Person{
 		addProfiles(Profiles.CLIENT);
 	}
 
-	public Client(Integer id, String cpf, String email, String password) {
-		super(id, cpf, email, password);
+	public Client(Integer id,String name, @CPF String cpf, String email, String password) {
+		super(id,name, cpf, email, password);
 		addProfiles(Profiles.CLIENT);
 	}
 

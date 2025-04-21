@@ -15,31 +15,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mouraforte.mfdesk.domain.enums.Profiles;
 
 @Entity
-public abstract class Person implements Serializable{
+public abstract class Person implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	protected String name;
-	
+
 	@Column(unique = true)
+	@CPF
 	protected String cpf;
 	@Column(unique = true)
 	protected String email;
-	
+
 	protected String password;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dateInit = LocalDate.now();
-	
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS")
 	protected Set<Integer> profiles = new HashSet<>();
@@ -49,9 +50,10 @@ public abstract class Person implements Serializable{
 		addProfiles(Profiles.CLIENT);
 	}
 
-	public Person(Integer id, String cpf, String email, String password) {
+	public Person(Integer id, String name, @CPF String cpf, String email, String password) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.cpf = cpf;
 		this.email = email;
 		this.password = password;
@@ -64,6 +66,14 @@ public abstract class Person implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCpf() {

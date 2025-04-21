@@ -6,12 +6,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-
 @Entity
-public class Technician extends Person{
+public class Technician extends Person {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@OneToMany(mappedBy = "technician")
 	private List<Called> calleds = new ArrayList<>();
 
@@ -19,8 +18,8 @@ public class Technician extends Person{
 		super();
 	}
 
-	public Technician(Integer id, String cpf, String email, String password) {
-		super(id, cpf, email, password);
+	public Technician(Integer id, String name, String cpf, String email, String password) {
+		super(id, name, cpf, email, password);
 	}
 
 	public List<Called> getCalleds() {
@@ -30,5 +29,5 @@ public class Technician extends Person{
 	public void setCalleds(List<Called> calleds) {
 		this.calleds = calleds;
 	}
-	
+
 }
