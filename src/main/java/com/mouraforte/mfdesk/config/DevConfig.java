@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.mouraforte.mfdesk.DBService;
+import com.mouraforte.mfdesk.service.DBService;
 
 @Configuration
 @Profile("test")

@@ -1,4 +1,4 @@
-package com.mouraforte.mfdesk;
+package com.mouraforte.mfdesk.service;
 
 import java.util.Arrays;
 
@@ -31,7 +31,7 @@ public class DBService {
 		technician01.addProfiles(Profiles.ADMIN);
 		Technician technician02 = new Technician(null, "Beatriz Moura", "95803827002", "beatriz.moura@gmail.com",
 				"mmm123");
-		technician01.addProfiles(Profiles.TECHNICIAN);
+		technician02.addProfiles(Profiles.TECHNICIAN);
 
 		Client client01 = new Client(null, "Doni Moura", "54567868005", "donivdemoura@gmail.com", "123");
 		Client client02 = new Client(null, "Luna Moura", "60849078067", "lunavdemoura@gmail.com", "123543");
