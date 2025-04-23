@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mouraforte.mfdesk.domain.enums.Profiles;
 
 @Entity
@@ -15,6 +16,7 @@ public class Client extends Person{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Called> calleds = new ArrayList<>();
 
